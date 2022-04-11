@@ -3,13 +3,11 @@
 </template>
 
 <script>
-import LandingPage from './components/HelloWorld.vue'
+import LandingPage from './components/LandingPage.vue'
 
+ console.log("in App")
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: 'App' ,
 }
 </script>
 
