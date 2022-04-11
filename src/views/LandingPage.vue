@@ -1,13 +1,17 @@
 <template>
     <NavBar/>
-    <img alt="background" src="./assets/charles-etoroma-k78R0lDxd48-unsplash.png" class = "background">
+    <img alt="background" src="../assets/charles-etoroma-k78R0lDxd48-unsplash.png" class = "background">
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
+import NavBar from '../components/NavBar.vue'
 
 export default {
-    name: "LandingPage"
+    name: "LandingPage",
+
+    components:{
+        NavBar
+    }
 }
 </script>
 

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import LandingPage from './components/LandingPage.vue'
+// import LandingPage from './components/LandingPage.vue'
 
  console.log("in App")
 export default {
@@ -18,6 +18,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

@@ -3,7 +3,7 @@ import LandingPage from '@/views/LandingPage.vue'
 
 const routes = [
     {
-        path: '/LandingPage',
+        path: '/',
         name: 'LandingPage', 
         component: LandingPage
     },
