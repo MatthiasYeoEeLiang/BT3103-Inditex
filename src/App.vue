@@ -4,7 +4,6 @@
 
 <script>
 // import LandingPage from './components/LandingPage.vue'
-
  console.log("in App")
 export default {
   name: 'App' ,

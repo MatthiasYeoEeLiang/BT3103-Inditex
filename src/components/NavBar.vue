@@ -25,7 +25,7 @@
           <a class="nav-link" href="#">Filter</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="/loginPage">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Cart</a>
