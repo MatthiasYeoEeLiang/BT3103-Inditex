@@ -1,4 +1,16 @@
 <template>
+ <div class="card"  v-for="item in chosen" :key="item" style="width: 18rem;">
+    <img class="card-img-top" src="/assets/logo.png" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">{{item.productdisplayname}}</p>
+        <p class="card-text">{{item.price}}</p>
+        <p class="card-text">{{item.size}}</p>
+        <p class="card-text">{{item.gender}}</p>
+        <a href="#" class="btn btn-primary">Add to cart</a>
+    </div>
+ </div>
+
     <div class = "filterdropdowns">
         <h1>Filter</h1>
         <h3>Occasion</h3>  
@@ -51,7 +63,7 @@ export default {
 
    methods: {
        async filter() {
-        this.items = [];
+        this.chosen = [];
         let z = await getDocs(collection(db, "products"))
         z.forEach((docs) => {
             let yy = docs.data()
@@ -61,21 +73,21 @@ export default {
             if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "less than 50") {
                 if (yy.price <= 50) {
                     console.log(yy.productdisplayname);
-                    this.items.push(yy.productdisplayname);
+                    this.chosen.push(yy.productdisplayname);
                     this.chosen.push(yy);
                 }
             }
                if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "more than 50") {
                 if (yy.price > 50) {
                     console.log(yy.productdisplayname);
-                    this.items.push(yy.productdisplayname);
+                    this.chosen.push(yy.productdisplayname);
                     this.chosen.push(yy);
                 }
             }
         })
 
 
-        console.log(this.items)
+        console.log(this.chosen)
         console.log(this.chosen[0].quantity)
     
         
