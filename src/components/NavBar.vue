@@ -22,7 +22,7 @@
           <a class="nav-link active" aria-current="page" href="#">Reviews</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Filter</a>
+          <a class="nav-link" href="/FilterPage">Filter</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/loginPage">Login</a>

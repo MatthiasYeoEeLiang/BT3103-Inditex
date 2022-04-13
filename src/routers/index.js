@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from '@/views/LandingPage.vue'
 import LogIn from '@/views/LoginPage.vue'
-
+import FilterPage from '@/views/FilterPage'
 const routes = [
     {
         path: '/',
@@ -13,6 +13,12 @@ const routes = [
         path: '/loginPage',
         name: 'Login',
         component: LogIn
+    },
+
+    {
+        path: '/FilterPage',
+        name: 'FilterPage',
+        component: FilterPage
     }
 ]
 
