@@ -6,22 +6,22 @@
         <h3>Occasion</h3>  
     <select @change="handleChange" name="Category" id="Category">
            
-         <option value="1">Formal</option>
-         <option value="2">Casual</option>
+         <option value="1">formal</option>
+         <option value="2">casual</option>
        
    </select><br><br><br>
         <h3>Gender</h3>
        <select @change="handleChange1" name="Gender" id="Gender">
            
-         <option value="1">Male</option>
-         <option value="2">Female</option>
+         <option value="1">male</option>
+         <option value="2">female</option>
        
    </select><br><br><br>
         <h3>Price Range</h3>
        <select @change="handleChange2" name="PriceRange" id="PriceRange">
            
          <option value="1">less than 50</option>
-         <option value="2">50-100</option>
+         <option value="2">more than 50</option>
        
    </select><br><br><br>
 
@@ -29,20 +29,57 @@
     
    </div>
 
-    
 
     
 </template>
 <script>
-const arr = ["Former", "Male", "less than 50"];
+import firebaseApp from '../firebase.js';
+import { getFirestore } from "firebase/firestore"
+import { collection, getDocs } from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+
+//const this.start = ["formal", "male", "less than 50"];
+//var arr2 = [];
 
 export default {
     name: 'FilterPage',
-
+    data: () => {
+    return {
+        start:["formal", "male", "less than 50"],
+        items:[],
+        chosen:[]
+        }
+    },
 
    methods: {
-       filter() {
-        console.log(arr);
+       async filter() {
+        this.items = [];
+        let z = await getDocs(collection(db, "products"))
+        z.forEach((docs) => {
+            let yy = docs.data()
+            
+            //console.log(yy.productdisplayname)
+           
+            if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "less than 50") {
+                if (yy.price <= 50) {
+                    console.log(yy.productdisplayname);
+                    this.items.push(yy.productdisplayname);
+                    this.chosen.push(yy);
+                }
+            }
+               if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "more than 50") {
+                if (yy.price > 50) {
+                    console.log(yy.productdisplayname);
+                    this.items.push(yy.productdisplayname);
+                    this.chosen.push(yy);
+                }
+            }
+        })
+
+
+        console.log(this.items)
+        console.log(this.chosen[0].quantity)
+    
         
        },
 
@@ -51,8 +88,8 @@ export default {
         
         var name = e.target.options[e.target.options.selectedIndex].text;
 
-        arr[0] = name;
-        console.log(arr[0]);
+        this.start[0] = name;
+        console.log(this.start[0]);
          
 
         }
@@ -63,8 +100,8 @@ export default {
         
         var name = e.target.options[e.target.options.selectedIndex].text;
 
-        arr[1] = name;
-        console.log(arr[1]);
+        this.start[1] = name;
+        console.log(this.start[1]);
         }
     },
 
@@ -73,8 +110,8 @@ export default {
 
         var name = e.target.options[e.target.options.selectedIndex].text;
 
-        arr[2] = name;
-        console.log(arr[2]);
+        this.start[2] = name;
+        console.log(this.start[2]);
         }
     },
     }
