@@ -1,6 +1,4 @@
 <template>
-
-    
     <div class = "filterdropdowns">
         <h1>Filter</h1>
         <h3>Occasion</h3>  
