@@ -1,7 +1,7 @@
 <template>
 <NavBar/>
 <FilterPage/>
-<Products/>
+
 <!-- <img id = "bg" src="@/assets/Coins2.png" alt = ""> -->
 </template>
 
@@ -9,14 +9,14 @@
 
 import FilterPage from '@/components/Filter.vue'
 import NavBar from '../components/NavBar.vue'
-import Products from '../components/Products.vue'
+
 
 export default {
   name: 'App',
   components:{
     FilterPage,
     NavBar,
-    Products
+
   },
   data(){
     return{
