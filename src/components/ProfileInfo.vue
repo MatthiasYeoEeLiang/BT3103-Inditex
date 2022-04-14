@@ -45,8 +45,9 @@ export default {
         async savetofs(){
             var a = document.getElementById("name1").value
             const b = 50
-            const f = []
-            const g = []
+
+            const f = 10000
+
             var c = document.getElementById("gender1").value
             var d = document.getElementById("num1").value
             var e = document.getElementById("date1").value
@@ -55,7 +56,10 @@ export default {
                 this.fbuser = auth.currentUser.email;
     
                 const docRef = await setDoc(doc(db, "users", String(this.fbuser)), {
-                    name: a, coin: b, gender: c, phonenum : d, birthday: e, cart: f, purchased: g
+
+
+                    name: a, coin: b, gender: c, phonenum : d, birthday: e, cart: f
+
                 })
                 console.log(docRef)
                 document.getElementById('myform').reset();
