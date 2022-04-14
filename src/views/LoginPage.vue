@@ -1,4 +1,5 @@
 <template>
+<NavBar/>
 <LogIn/>
 <!-- <img id = "bg" src="@/assets/Coins2.png" alt = ""> -->
 </template>
@@ -6,11 +7,13 @@
 <script>
 
 import LogIn from '@/components/Login.vue'
+import NavBar from '../components/NavBar.vue'
 
 export default {
   name: 'App',
   components:{
-    LogIn
+    LogIn,
+    NavBar
   },
   data(){
     return{
