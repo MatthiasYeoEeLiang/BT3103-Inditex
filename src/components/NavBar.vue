@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">INDITEX</a>
+    <a class="navbar-brand" href="/">INDITEX</a>
     <button
       class="navbar-toggler"
       type="button"

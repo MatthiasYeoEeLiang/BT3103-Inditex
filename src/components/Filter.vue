@@ -7,7 +7,9 @@
         <p class="card-text">{{item.price}}</p>
         <p class="card-text">{{item.size}}</p>
         <p class="card-text">{{item.gender}}</p>
+
         <a href="#" class="btn btn-primary" @click="addtocart(item.id)">Add to cart</a>
+
     </div>
  </div>
 
@@ -69,6 +71,7 @@ export default {
     },
 
    methods: {
+
        async filter() {
         this.chosen = [];
         let z = await getDocs(collection(db, "products"))
