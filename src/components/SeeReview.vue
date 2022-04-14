@@ -71,11 +71,7 @@
                         &starf;
                         &bigstar;
                         &star;
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i><!--Empty star-->
+                        
                     </div>
                 </div>
                 <!--Comments---------------------------------------->
