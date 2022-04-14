@@ -5,9 +5,10 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 import AddReview from '@/components/AddReview.vue'
 import SeeReview from '@/components/SeeReview.vue'
-import NavBar from '@/components/NavBar.vue'
+
 export default {
   name: 'App',
   components:{
