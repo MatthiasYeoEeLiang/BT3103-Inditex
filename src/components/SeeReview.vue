@@ -4,6 +4,7 @@
     <section id="testimonials">
         <!--heading--->
         <div class="testimonial-heading">
+            <br><br><br><br><br><br><br><br><br>
             <span>Reviews</span>
             <h5>Most Recent</h5>
         </div>
@@ -33,12 +34,6 @@
                         &bigstar;
                         &star;
                         
-
-                        <i class="fa fa-star checked"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i><!--Empty star-->
                     </div>
                 </div>
                 <!--Comments---------------------------------------->
@@ -70,7 +65,7 @@
                         &bigstar;
                         &starf;
                         &bigstar;
-                        &star;
+                        &starf;
                         
                     </div>
                 </div>
@@ -100,13 +95,8 @@
                         &starf;
                         &bigstar;
                         &starf;
-                        &bigstar;
                         &star;
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i><!--Empty star-->
+                        &star;
                     </div>
                 </div>
                 <!--Comments---------------------------------------->
@@ -135,13 +125,9 @@
                         &starf;
                         &bigstar;
                         &starf;
-                        &bigstar;
                         &star;
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i><!--Empty star-->
+                        &star;
+
                     </div>
                 </div>
                 <!--Comments---------------------------------------->
