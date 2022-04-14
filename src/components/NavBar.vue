@@ -31,7 +31,7 @@
           <a class="nav-link" href="#">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Account</a>
+          <a class="nav-link" href="/profile">Account</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link disabled"
