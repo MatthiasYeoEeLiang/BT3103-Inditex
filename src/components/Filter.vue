@@ -7,7 +7,7 @@
         <p class="card-text">{{item.price}}</p>
         <p class="card-text">{{item.size}}</p>
         <p class="card-text">{{item.gender}}</p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
+        <a href="#" class="btn btn-primary" @click="addtocart(item.id)">Add to cart</a>
     </div>
  </div>
 
@@ -50,8 +50,9 @@
 
 <script>
 import firebaseApp from '../firebase.js';
+// import {getAuth} from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs,doc,getDoc} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
 //const this.start = ["formal", "male", "less than 50"];
@@ -140,6 +141,28 @@ export default {
         console.log(this.start[3]);
         }
     },
+
+    async addtocart(){
+
+    const snap = await getDoc(doc(db, 'books', 'limngeefengz@gmail.com'))
+    console.log(snap.data().cart)
+
+            // try {
+            //     const auth = getAuth();
+            //     this.fbuser = auth.currentUser.email;
+            //     this.db.collection("users").doc("limngeefengz@gmail.com").update({cart : itemid});
+    
+            // //     const docRef = await getDoc(doc(db, "users", String(this.fbuser)), {
+            // //         cart.push(itemid) 
+            // //     })
+            // //     console.log(docRef)
+            // //     this.$emit("added")
+            // }
+            // catch(error) {
+            //     console.error("Error adding document: ", error);
+            // }
+        }
+
     }
     
     }
