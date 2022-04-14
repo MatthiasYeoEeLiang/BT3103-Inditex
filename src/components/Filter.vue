@@ -73,14 +73,14 @@ export default {
             if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "less than 50") {
                 if (yy.price <= 50) {
                     console.log(yy.productdisplayname);
-                    this.chosen.push(yy.productdisplayname);
+                   // this.chosen.push(yy.productdisplayname);
                     this.chosen.push(yy);
                 }
             }
                if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "more than 50") {
                 if (yy.price > 50) {
                     console.log(yy.productdisplayname);
-                    this.chosen.push(yy.productdisplayname);
+                   // this.chosen.push(yy.productdisplayname);
                     this.chosen.push(yy);
                 }
             }
