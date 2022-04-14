@@ -1,8 +1,8 @@
 <template>
- <div class="card"  v-for="item in chosen" :key="item" style="width: 18rem;">
-    <img class="card-img-top" src="/assets/logo.png" alt="Card image cap">
+<div class="card"  v-for="item in chosen" :key="item" style="width: 18rem;">
+    <img class="card-img-top" :src ="item.imageurl" alt="Card image cap">
     <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        
         <p class="card-text">{{item.productdisplayname}}</p>
         <p class="card-text">{{item.price}}</p>
         <p class="card-text">{{item.size}}</p>
@@ -34,14 +34,20 @@
          <option value="2">more than 50</option>
        
    </select><br><br><br>
+          <h3>size</h3>
+       <select @change="handleChange3" name="Sizing" id="Sizing">
+           
+         <option value="1">S</option>
+         <option value="2">M</option>
+         <option value="3">L</option>
+       
+   </select><br><br><br>
 
     <button @click="filter" id = "dmubutton">DRESS ME UP!</button>
     
    </div>
-
-
-    
 </template>
+
 <script>
 import firebaseApp from '../firebase.js';
 import { getFirestore } from "firebase/firestore"
@@ -55,7 +61,7 @@ export default {
     name: 'FilterPage',
     data: () => {
     return {
-        start:["formal", "male", "less than 50"],
+        start:["formal", "male", "less than 50", "S"],
         items:[],
         chosen:[]
         }
@@ -70,14 +76,14 @@ export default {
             
             //console.log(yy.productdisplayname)
            
-            if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "less than 50") {
+            if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "less than 50" && yy.size == this.start[3]) {
                 if (yy.price <= 50) {
                     console.log(yy.productdisplayname);
                    // this.chosen.push(yy.productdisplayname);
                     this.chosen.push(yy);
                 }
             }
-               if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "more than 50") {
+               if (yy.category == this.start[0] && yy.gender == this.start[1] && this.start[2] == "more than 50" && this.start[3] == yy.size) {
                 if (yy.price > 50) {
                     console.log(yy.productdisplayname);
                    // this.chosen.push(yy.productdisplayname);
@@ -124,20 +130,25 @@ export default {
         console.log(this.start[2]);
         }
     },
+
+    
+        handleChange3(e) {
+        if(e.target.options.selectedIndex > -1) {
+        
+        var name = e.target.options[e.target.options.selectedIndex].text;
+        this.start[3] = name;
+        console.log(this.start[3]);
+        }
+    },
     }
     
     }
-
-
-
 </script>
 
 <style scoped>
 .filterdropdowns {
     margin-right: 85%;
     margin-bottom: 80%;
-    
-  
 }
 
 .dmubutton {
@@ -145,6 +156,5 @@ export default {
 }
 
 </style>
-
 
 
