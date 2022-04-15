@@ -47,6 +47,11 @@ const routes = [
     name: "ShoppingCartPage",
     component: ShoppingCartPage,
   },
+  {
+    path: "/AdminInventoryPage",
+    name: "AdminInventoryPage",
+    component: AdminInventoryPage,
+  },
 
 ];
 
