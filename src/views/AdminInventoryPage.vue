@@ -1,32 +1,28 @@
 <template>
-  <NavBar/>
-  <ShoppingCart/>
+    <NavBar/>
+    <AdminInventory/>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
-import ShoppingCart from '@/components/ShoppingCart.vue'
+import NavBar from '../components/NavBar.vue'
+import AdminInventory from '../components/AdminInventory.vue'
+
 
 export default {
-  name: 'App',
-  components:{
-    NavBar,
-    ShoppingCart
-  },
-  data(){
-    return{
-      refreshComp:0
-    }
-  },
-  methods:{
-    change(){
-      this.refreshComp += 1
-    }
-  }
+    name: "LandingPage",
 
+    components:{
+        NavBar,
+        AdminInventory,
+
+    }
 }
 </script>
 
-<style>
-
+<style scoped>
+.background {
+  max-height: 100vh;
+  width: 100%;
+  object-fit: cover;
+}
 </style>
