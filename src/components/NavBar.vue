@@ -35,6 +35,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/profile">Account</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/AdminInventoryPage">AdminInventory</a>
+        </li>
         <!-- <li class="nav-item">
           <a class="nav-link disabled"
             >Disabled</a
