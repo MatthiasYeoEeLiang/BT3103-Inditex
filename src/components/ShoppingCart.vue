@@ -6,6 +6,7 @@
       <p class="card-text">{{ item.price }}</p>
       <p class="card-text">{{ item.size }}</p>
       <p class="card-text">{{ item.gender }}</p>
+      <a href="#" class="btn btn-danger" >Remove from cart</a>
     </div>
   </div>
 
@@ -75,6 +76,8 @@ export default {
     }
     console.log("here3");
   },
+
+
 };
 </script>
 

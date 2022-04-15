@@ -7,7 +7,7 @@
         <p class="card-text">{{item.price}}</p>
         <p class="card-text">{{item.size}}</p>
         <p class="card-text">{{item.gender}}</p>
-        <a href="#" class="btn btn-primary" @click="addtocart(item.id)">Add to cart</a>
+        <a href="#" class="btn btn-success" @click="addtocart(item.id)">Add to cart</a>
     </div>
  </div>
 

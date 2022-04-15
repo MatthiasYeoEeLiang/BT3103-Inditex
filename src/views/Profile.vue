@@ -73,26 +73,8 @@ export default {
         return {
             user: false,
             coin: coin,
-            products: [
-                {
-                title: 'Nike Air Max',
-                color: 'green',
-                
-                // src: require('./assets/green-shoe.png')
-                },
-                {
-                title: 'Nike flex',
-                color: 'blue',
-                
-                // src: require('./assets/blue-shoe.png')
-                },
-                {
-                title: 'Nike Roche Runs',
-                color: 'pink',
-                
-                // src: require('./assets/pink-shoe.png')
-                }
-            ]
+            products: []
+            
         }
     },
 
