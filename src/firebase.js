@@ -7,12 +7,12 @@ import 'firebase/firestore';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBSvugO6UJLoSpk11wwTEAjdMAppkdcVpQ",
-  authDomain: "test-8ce05.firebaseapp.com",
-  projectId: "test-8ce05",
-  storageBucket: "test-8ce05.appspot.com",
-  messagingSenderId: "446362681776",
-  appId: "1:446362681776:web:a22cd8662c1a0648cb5675"
+  apiKey: "AIzaSyABql-E2ANqU28nK7tqqF3bsCMZnvqtMEo",
+  authDomain: "inditex-e4243.firebaseapp.com",
+  projectId: "inditex-e4243",
+  storageBucket: "inditex-e4243.appspot.com",
+  messagingSenderId: "547277562732",
+  appId: "1:547277562732:web:e75c61908243a34c7ec949"
 };
 
   const firebaseApp = initializeApp(firebaseConfig);

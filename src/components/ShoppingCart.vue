@@ -9,6 +9,7 @@
       <a href="#" class="btn btn-danger" @click="removefromcart(item.id)" >Remove from cart</a>
     </div>
   </div>
+   <a href="#" class="btn btn-success" @click="purchaseitems" >CHECKOUT</a>
 
 </template>
 
@@ -23,6 +24,9 @@ import {
   collection,
   arrayRemove,
   updateDoc,
+  arrayUnion,
+  setDoc,
+  
 } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
@@ -96,6 +100,36 @@ export default {
          }
        }
        window.location.reload();
+    },
+
+    async purchaseitems() {
+      for (var ind = 0;  ind < this.items.length; ind++) {
+            this.fbuser= getAuth().currentUser.email;
+            const washingtonRef = doc(db, "users", String(this.fbuser));
+            await updateDoc(washingtonRef, {
+            purchased: arrayUnion(this.items[ind].id)
+            });
+            //let z = await getDocs(collection(db, "products"))
+            // z.forEach((docs) => {
+            //   let yy = docs.data();
+            //   if (yy.id == this.items[ind].id) {
+                
+            //     let correctquant = yy.quantity - 1;
+                
+            //     setDoc(docs, { quantity : correctquant}, {merge: true})
+            //     console.log(String(docs.data().productdisplayname))
+            //   }
+            // });
+      }
+      //clear this.items array
+      this.items.splice(0, this.items.length);
+      //clear cart field in user document
+      this.fbuser= getAuth().currentUser.email;
+      const washingtonRef = doc(db, "users", String(this.fbuser));
+      setDoc(washingtonRef, { cart: [] }, { merge: true });
+      //var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
+      //console.log(snap.data().cart);
+      //console.log(snap.data().purchased);
     }
   }
 
