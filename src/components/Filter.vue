@@ -75,7 +75,11 @@ export default {
                 this.user = user;
             }
         });},
-        methods: {
+
+
+
+   methods: {
+
        async filter() {
         this.chosen = [];
         let z = await getDocs(collection(db, "products"))

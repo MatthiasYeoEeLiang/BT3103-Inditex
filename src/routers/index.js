@@ -5,6 +5,7 @@ import FilterPage from "@/views/FilterPage";
 import Profile from "@/views/Profile.vue";
 import InfoPage from "@/views/InfoPage.vue";
 import ReviewPage from "@/views/ReviewPage.vue";
+import ShoppingCartPage from "@/views/ShoppingCartPage.vue";
 const routes = [
   {
     path: "/",
@@ -38,6 +39,12 @@ const routes = [
     path: "/ReviewPage",
     name: "ReviewPage",
     component: ReviewPage,
+  },
+
+  {
+    path: "/shoppingcartpage",
+    name: "ShoppingCartPage",
+    component: ShoppingCartPage,
   },
 ];
 
