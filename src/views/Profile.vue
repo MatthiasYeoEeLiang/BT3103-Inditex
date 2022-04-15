@@ -1,32 +1,11 @@
 <template>
     <NavBar/>
     <div> <h3><strong> My Account </strong> </h3> </div>
-    <!-- <NavBar/> -->
     <div class ="grid-container" style="text-align:center;" v-if="user">
-        <!-- <NavBar/> -->
-        <!-- <div> <h3><strong> This is the profile page </strong> </h3> </div> -->
-        <!-- <div v-if="user">
-            <form class="information">
-            <div>
-                <img src="@/assets/profilepic.png" style="width:75px; height:75px; border-radius:50%; border:4px solid #333" />
-            </div>
-            <div>
-                <p> Name: <strong>{{user.displayName}}</strong><br>
-                Email:<strong>{{user.email}}</strong><br>
-                Coins:<strong>0</strong> <br></p>
-            </div>
-            </form>
-        </div> -->
-    <section class="products">
-    <div style="text-align:center;" v-if="user">
+    <div class ="purchases" style="text-align:center;" v-if="user">
         <h3 id = "mainHead">Purchases</h3>
+        <ShoppingCart/>
     </div>
-      <Product
-        v-for="product in products"
-        :key="product.color"
-        :product="product"
-      />
-    </section>
             <div v-if="user">
             <form class="information">
             <div>
@@ -39,18 +18,16 @@
                 <button id = "addinfo" type = "button" @click="$router.push('infopage')"> Account Information </button><br><br>
                 </div>
                 <LogOut/>
-            <!-- </div> -->
             </form>
-                    </div>
-        <!-- <LogOut/> -->
+            </div>
     </div>
-    <!-- <LogOut/> -->
 </template>
 
 <script>
 // import NavBar from '@/components/NavBar.vue'
 import LogOut from '@/components/LogOut.vue'
-import Product from '@/components/Product.vue'
+// import Product from '@/components/Product.vue'
+import ShoppingCart from '@/components/ShoppingCart.vue'
 import NavBar from '../components/NavBar.vue'
 import {ref} from 'vue'
 import firebaseApp from '../firebase.js'
@@ -59,16 +36,15 @@ import {doc, getDoc} from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
 var coin = ref(0);
 const db = getFirestore(firebaseApp);
-
 export default {
     name: 'ProFile',
     components:{
         // NavBar,
-        Product,
+        // Product,
         NavBar,
+        ShoppingCart,
         LogOut
     },
-
     data() {
         return {
             user: false,
@@ -77,7 +53,6 @@ export default {
             
         }
     },
-
     mounted() {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
@@ -86,16 +61,13 @@ export default {
                 display(user);
             }
         });
-
     async function display(user) {
         let docRef = doc(db, "users", String(user.email));
         let docSnap = await getDoc(docRef);
-
       coin.value = docSnap.data().coin;
     }
     }
 }
-
 </script>
 
 <style>
@@ -109,7 +81,11 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-}
+  }
+  .purchases {
+      height: 100px;
+      width: 100px;
+  }
   body {
     font-family: 'montseratt', sans-serif;
   }
