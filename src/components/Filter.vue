@@ -77,7 +77,9 @@ export default {
         });},
 
 
+
    methods: {
+
        async filter() {
         this.chosen = [];
         let z = await getDocs(collection(db, "products"))
