@@ -50,24 +50,32 @@
 
 <script>
 import firebaseApp from '../firebase.js';
-import {getAuth} from "firebase/auth";
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
 import { collection, getDocs,doc, getDoc} from "firebase/firestore";
 import {  updateDoc, arrayUnion } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
-
 //const this.start = ["formal", "male", "less than 50"];
 //var arr2 = [];
-
 export default {
     name: 'FilterPage',
     data: () => {
     return {
         start:["formal", "male", "less than 50", "S"],
         items:[],
-        chosen:[]
+        chosen:[],
+        // fbuser:getAuth().currentUser.email
         }
     },
+
+    mounted() {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user;
+            }
+        });},
+
 
    methods: {
        async filter() {
@@ -93,46 +101,37 @@ export default {
                 }
             }
         })
-
-
         console.log(this.chosen)
         console.log(this.chosen[0].quantity)
+        console.log("hello")
+        console.log(this.fbuser)
     
         
        },
-
         handleChange(e) {
         if(e.target.options.selectedIndex > -1) {
         
         var name = e.target.options[e.target.options.selectedIndex].text;
-
         this.start[0] = name;
         console.log(this.start[0]);
          
-
         }
     },
-
         handleChange1(e) {
         if(e.target.options.selectedIndex > -1) {
         
         var name = e.target.options[e.target.options.selectedIndex].text;
-
         this.start[1] = name;
         console.log(this.start[1]);
         }
     },
-
         handleChange2(e) {
         if(e.target.options.selectedIndex > -1) {
-
         var name = e.target.options[e.target.options.selectedIndex].text;
-
         this.start[2] = name;
         console.log(this.start[2]);
         }
     },
-
     
         handleChange3(e) {
         if(e.target.options.selectedIndex > -1) {
@@ -142,14 +141,13 @@ export default {
         console.log(this.start[3]);
         }
     },
-
         async addtocart(itemid){
-            var fbuser= getAuth().currentUser.email;
-            const washingtonRef = doc(db, "users", String(fbuser));
+            this.fbuser= getAuth().currentUser.email;
+            const washingtonRef = doc(db, "users", String(this.fbuser));
             await updateDoc(washingtonRef, {
             cart: arrayUnion(itemid)
             });
-            var snap = await getDoc(doc(db, 'users', String(fbuser)));
+            var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
             console.log(snap.data().cart)
         //var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
         //snap.update({cart : db.firestore.cart.arrayUnion(itemid)})
@@ -171,7 +169,6 @@ export default {
                 //     console.error("Error adding document: ", error);
                 // }
             }
-
     }
     
     }
@@ -182,11 +179,7 @@ export default {
     margin-right: 85%;
     margin-bottom: 80%;
 }
-
 .dmubutton {
     background-color:aquamarine;
 }
-
 </style>
-
-
