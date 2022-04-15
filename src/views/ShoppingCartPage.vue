@@ -1,20 +1,17 @@
 <template>
-<NavBar/>
-<ShoppingCart/>
+  <NavBar/>
+  <ShoppingCart/>
 </template>
 
 <script>
-
 import NavBar from '@/components/NavBar.vue'
 import ShoppingCart from '@/components/ShoppingCart.vue'
-
 
 export default {
   name: 'App',
   components:{
     NavBar,
-    ShoppingCart,
-
+    ShoppingCart
   },
   data(){
     return{
@@ -26,5 +23,10 @@ export default {
       this.refreshComp += 1
     }
   }
+
 }
 </script>
+
+<style>
+
+</style>

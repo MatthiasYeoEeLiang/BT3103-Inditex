@@ -46,7 +46,7 @@ export default {
             var a = document.getElementById("name1").value
             const b = 50
 
-            const f = 10000
+            const f = []
 
             var c = document.getElementById("gender1").value
             var d = document.getElementById("num1").value

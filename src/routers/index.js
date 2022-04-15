@@ -40,11 +40,14 @@ const routes = [
     name: "ReviewPage",
     component: ReviewPage,
   },
+
+
   {
-    path: "/ShoppingCartPage",
+    path: "/shoppingcartpage",
     name: "ShoppingCartPage",
     component: ShoppingCartPage,
-  }
+  },
+
 ];
 
 const router = createRouter({
