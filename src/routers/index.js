@@ -41,11 +41,13 @@ const routes = [
     component: ReviewPage,
   },
 
+
   {
     path: "/shoppingcartpage",
     name: "ShoppingCartPage",
     component: ShoppingCartPage,
   },
+
 ];
 
 const router = createRouter({
