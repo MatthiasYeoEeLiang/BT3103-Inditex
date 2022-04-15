@@ -52,7 +52,7 @@ const routes = [
     path: "/AdminInventoryPage",
     name: "AdminInventoryPage",
     component: AdminInventoryPage,
-  },
+  }
 
 ];
 
