@@ -4,7 +4,7 @@
     <div class ="grid-container" style="text-align:center;" v-if="user">
     <div class ="purchases" style="text-align:center;" v-if="user">
         <h3 id = "mainHead">Purchases</h3>
-        <ShoppingCart/>
+        <Checkouted/>
     </div>
             <div v-if="user">
             <form class="information">
@@ -27,7 +27,8 @@
 // import NavBar from '@/components/NavBar.vue'
 import LogOut from '@/components/LogOut.vue'
 // import Product from '@/components/Product.vue'
-import ShoppingCart from '@/components/ShoppingCart.vue'
+// import ShoppingCart from '@/components/ShoppingCart.vue'
+import Checkouted from '@/components/Checkouted.vue'
 import NavBar from '../components/NavBar.vue'
 import {ref} from 'vue'
 import firebaseApp from '../firebase.js'
@@ -42,7 +43,7 @@ export default {
         // NavBar,
         // Product,
         NavBar,
-        ShoppingCart,
+        Checkouted,
         LogOut
     },
     data() {

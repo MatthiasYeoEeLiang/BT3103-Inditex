@@ -130,6 +130,7 @@ export default {
       //var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
       //console.log(snap.data().cart);
       //console.log(snap.data().purchased);
+      this.$router.push('profile')
     }
   }
 
