@@ -6,6 +6,7 @@ import Profile from "@/views/Profile.vue";
 import InfoPage from "@/views/InfoPage.vue";
 import ReviewPage from "@/views/ReviewPage.vue";
 import ShoppingCartPage from "@/views/ShoppingCartPage.vue";
+import AdminInventoryPage from "@/views/AdminInventoryPage.vue";
 const routes = [
   {
     path: "/",
@@ -46,6 +47,11 @@ const routes = [
     path: "/shoppingcartpage",
     name: "ShoppingCartPage",
     component: ShoppingCartPage,
+  },
+  {
+    path: "/AdminInventoryPage",
+    name: "AdminInventoryPage",
+    component: AdminInventoryPage,
   },
 
 ];
