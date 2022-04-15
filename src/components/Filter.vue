@@ -144,7 +144,9 @@ export default {
         }
     },
         async addtocart(itemid){
+        try{
             this.fbuser= getAuth().currentUser.email;
+       
             const washingtonRef = doc(db, "users", String(this.fbuser));
             await updateDoc(washingtonRef, {
             cart: arrayUnion(itemid)
@@ -170,6 +172,9 @@ export default {
                 // catch(error) {
                 //     console.error("Error adding document: ", error);
                 // }
+        } catch {
+            alert("Please log in first and set account information under account link!!")
+        }
             }
     }
     
