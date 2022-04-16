@@ -1,5 +1,6 @@
 <template >
-  <div class="card"  v-for="item in items" :key="item" style="width: 18rem">
+<div class="row justify-content-center">
+  <div class="card col-sm-4"  v-for="item in items" :key="item" style="width: 18rem">
     <img class="card-img-top" :src="item.imageurl" alt="Card image cap" />
     <div class="card-body">
       <p class="card-text" >{{ item.productdisplayname }}</p>
@@ -8,6 +9,8 @@
       <p class="card-text">{{ item.gender }}</p>
     </div>
   </div>
+</div>
+  
 
 </template>
 
@@ -82,4 +85,9 @@ export default {
 </script>
 
 <style scoped>
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
     <NavBar/>
     <div> <h3><strong> My Account </strong> </h3> </div>
-    <div class ="grid-container" style="text-align:center;" v-if="user">
-    <div class ="purchases" style="text-align:center;" v-if="user">
+    <div class ="grid-container"  v-if="user">
+    <div class ="purchases" v-if="user">
         <h3 id = "mainHead">Purchases</h3>
         <Checkouted/>
     </div>
@@ -10,7 +10,7 @@
             <form class="information">
             <div>
                 <img src="@/assets/profilepic.png" style="width:75px; height:75px; border-radius:8px; border:4px" />
-            </div>
+            </div><br><br>
             <div>
                 <p> Name: <strong>{{user.displayName}}</strong><br>
                 Email:<strong>{{user.email}}</strong><br>
@@ -80,13 +80,10 @@ export default {
   }
   .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: 5fr 1fr;
+
   }
-  .purchases {
-      height: 100px;
-      width: 100px;
-  }
+
   body {
     font-family: 'montseratt', sans-serif;
   }

@@ -1,17 +1,24 @@
 <template >
-  <div class="card"  v-for="item in items" :key="item" style="width: 18rem">
-    <img class="card-img-top" :src="item.imageurl" alt="Card image cap" />
-    <div class="card-body">
-      <p class="card-text" >{{ item.productdisplayname }}</p>
-      <p class="card-text">S${{ item.price }}</p>
-      <p class="card-text">{{ item.size }}</p>
-      <p class="card-text">{{ item.gender }}</p>
-      <a href="#" class="btn btn-danger" @click="removefromcart(item.id)" >Remove from cart</a>
+
+  <div class="row justify-content-center">
+    <div class="card col-sm-4"  v-for="item in items" :key="item" style="width: 18rem">
+      <img class="card-img-top" :src="item.imageurl" alt="Card image cap" />
+      <div class="card-body">
+        <p class="card-text" >{{ item.productdisplayname }}</p>
+        <p class="card-text">S${{ item.price }}</p>
+        <p class="card-text">{{ item.size }}</p>
+        <p class="card-text">{{ item.gender }}</p>
+        <a href="#" class="btn btn-danger" @click="removefromcart(item.id)" >Remove from cart</a>
+      </div>
     </div>
   </div>
+
+
+
    <a href="#" class="btn btn-success" @click="purchaseitems" >CHECKOUT</a><br><br>
 
    
+
 
 </template>
 
@@ -194,4 +201,28 @@ export default {
 </script>
 
 <style scoped>
+.grid-container {
+  display: grid;
+  /* grid-template-columns: 1fr 3fr ;
+  grid-auto-rows: 90%; */
+  /* grid-template-rows: 1fr 3fr; */
+  /* gap: 10px;
+  background-color: #2196F3;
+  padding: 10px; */
+}
+/* .card{
+  margin: 0 auto; 
+  float: none; 
+  margin-bottom: 10px;
+} */
+
+#pcard{
+    justify-self: center;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
 </style>
