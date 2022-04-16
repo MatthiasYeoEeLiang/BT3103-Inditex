@@ -1,373 +1,108 @@
 <template>
-<section>
-      <br><br><br><br><br>
-      <div class="container">
-          <h2>Upload a review and get 10 coins!</h2>
-          <form> 
-            <div class="pdt-name">
-              <!-- <label for="product-name"> Please enter a valid product name</label>
-              <input type="text" id="product-name" required="">
-              <button @click="handleInput"> Check validity</button> -->
-              <treeselect v-model="value" :multiple="true" :options="options" />
-            </div>
-          </form>
+<!-- form -->
+  <div class="email">
+    <label for="exampleInputEmail">Email address</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required = "">
+  </div><br>
 
+   <div class="product">
+    <label for="product">Product</label>
+    <textarea class="form-control" id="product" rows="1" required = "" placeholder="product name"></textarea>
+  </div><br>
 
-          
-          <form @submit.prevent="handleSubmit">
-              
-              <div class="form-group">
-                  <label for="review">Leave a review...</label>
-                  <textarea id="review" rows="5" v-model="review"></textarea>
-              </div>
+   <div class="size">
+    <label for="size">Size me up!</label>
+    <textarea class="form-control" id="size" rows="1" required = "" placeholder="S,M,L?"></textarea>
+  </div><br>
 
-              <button @click="add10Coins" type="submit">Submit</button>
-          </form>
-      </div>
-      <br><br><br><br><br><br><br><br><br><br><br><br>
+   <div class="comment">
+    <label for="comment">Write your review! We value your opinions!</label>
+    <textarea class="form-control" id="comment" rows="3" required = "" placeholder="Tell us!"></textarea>
+    </div><br>
+  <button type="submit" class="btn btn-success" @click="savereview()">Publish</button>
 
-      <div>
-        <div class="container">
-                <!--top------------------------->
-                <div class="box-top">
-                    <!--profile----->
-                    <div class="profile">
-                        <!--img---->
-                        <div class="profile-img">
-                            <img :src="require('@/assets/bershka m casual pants .jpeg')" />
-                        </div>
-                        <!--name-and-username-->
-                        <div class="name-user">
-                            <strong>Jack Ho</strong>
-                            <span>@jackho</span>
-                        </div>
-                    </div>
-                    <!--reviews------>
-                    <div class="reviews">
-                        &starf;
-                        &bigstar;
-                        &starf;
-                        &bigstar;
-                        &star;
-                    </div>
-                </div>
-                <!--Comments---------------------------------------->
-                <div class="client-comment">
-                    <p> 
-                      Product: {{ value }} <br>
-                      Review: {{ review }}
+  <!-- cards -->
+  <div class="card"  v-for="item in showrev" :key="item" style="width: 18rem">
+    <img class="card-img-top" :src="item[1]" alt="Card image cap" />
+    <div class="card-body">
+      <p class="card-text" >{{ "Customer: " + item[0] }}</p>
+      <p class="card-text">{{ "Product: " + item[2] }}</p>
+      <p class="card-text">{{ "Satisfied review made on " +new Date().toLocaleString()+": " + item[3] }}</p>
+    </div>
+  </div>
 
-                    </p>
-                </div>
-            </div>
-          
-          
-      </div>
-  </section>
-  
 </template>
-double
+
 <script>
-//import { projectFirestore } from '../firebase/config'
-// import the component
-import Treeselect from 'vue3-treeselect'
-  // import the styles
-import 'vue3-treeselect/dist/vue3-treeselect.css'
-import { getAuth } from "firebase/auth";
-import firebaseApp from "../firebase.js";
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc
-  
-} from "firebase/firestore";
+import firebaseApp from '../firebase.js';
+//import {getAuth} from "firebase/auth";
+import { addDoc, collection, getFirestore, getDocs } from "firebase/firestore"
+//import { doc, setDoc } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
+const colRef = collection(db, "reviews");
 export default {
-  components: { Treeselect },
-    data() {
-        return {
-          value: null,
-          options: [ {
-            id:'male',
-            label:'male',
-            children: [{
-              id:'casual',
-              label:'casual',
-              children: [{
-                id:'Relaxed-fit trousers',
-                label:'Relaxed-fit trousers'
-              }, {
-                id: 'Cargo-Pants',
-                label: 'Cargo-Pants'
-              },
-              {
-                id: 'Straight-cut Trousers',
-                label: 'Straight-cut Trousers'
-              },{
-                id: 'Striped T-shirt',
-                label: 'Striped T-shirt'
-              },{
-                id: 'Colored T-shirt',
-                label: 'Colored T-shirt'
-              }, {
-                id:'Worded T-shirt',
-                label: 'Worded T-shirt'
-              },{
-                id:'Stretchy Poplin Shirt',
-                label:'Stretchy Poplin Shirt'
-              }
-              ]
-            }, {
-              id:'formal',
-              label:'formal',
-              children: [{
-                id:'Stretched Formal Shirt',
-                label:'Stretched Formal Shirt'
-              }, {
-                id: 'Easy Care Textured Shirt',
-                label: 'Easy Care Textured Shirt'
-              },
-              {
-                id: 'Dark Blue Office Pants',
-                label: 'Dark Blue Office Pants'
-              },{
-                id: 'Beige Office Pants',
-                label: 'Beige Office Pants'
-              },{
-                id: 'Grey Office Pants',
-                label: 'Grey Office Pants'
-              }]
-
-            }]
-          }, {
-            id:'female',
-            label:'female',
-            children: [{
-              id:'casual',
-              label:'casual',
-              children: [{
-                id:'Bell-Bottom Jeans',
-                label:'Bell-Bottom Jeans'
-              }, {
-                id: 'Loose Joggers',
-                label: 'Loose Joggers'
-              },
-              {
-                id: 'Distressed Jeans',
-                label: 'Distressed Jeans'
-              },{
-                id: 'Colored Tank Top',
-                label: 'Colored Tank Top'
-              },{
-                id: 'Oversized T-shirt',
-                label: 'Oversized T-shirt'
-              }, {
-                id:'Striped T-shirt with Cartoon',
-                label: 'Striped T-shirt with Cartoon'
-              }
-              ]
-            }, {
-              id:'formal',
-              label:'formal',
-              children: [{
-                id:'White Linen Shirt',
-                label:'White Linen Shirt'
-              }, {
-                id: 'Satin-Finish Shirt',
-                label: 'Satin-Finish Shirt'
-              },
-              {
-                id: 'Oversized Poplin Shirt',
-                label: 'Oversized Poplin Shirt'
-              },{
-                id: 'Pink Trousers',
-                label: 'Pink Trousers'
-              },{
-                id: 'Green Office Trousers',
-                label: 'Green Office Trousers'
-              },{
-                id: 'Pleated Trousers',
-                label: 'Pleated Trousers'
-              }]
-
-            }]
-
-          }],
-            
-            
-            review: ''
+  name: 'AddReview',
+  
+    data: () => {
+    return {
+        //review: [],
+        //products: [],
+        showrev: []
         }
     },
+  
+  mounted() {
+    display().then(val => {this.showrev = val})
+  async function display() {
+    var review1 = [];
+    var products1 = [];
+    var showrev1 = [];
+    let z = await getDocs(collection(db, "products"));
+    z.forEach((docs => {
+      let yy = docs.data()
+        products1.push(yy)
 
-    methods: { 
-      async add10Coins() {
-        this.fbuser= getAuth().currentUser.email;
-        const washingtonRef = doc(db, "users", String(this.fbuser));
-        var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
-        setDoc(washingtonRef, { coin: snap.data().coin + 10 }, { merge: true });
-        console.log(snap.data().coin);
-
+    }))
+    let r = await getDocs(collection(db, "reviews"))
+    r.forEach((docs) => {
+      let rr = docs.data()
+      review1.push(rr)
+    })
+    for (var i = 0; i < review1.length; i++) {
+      for (var j = 0; j < products1.length; j++){
+        if (review1[i].product == products1[j].productdisplayname && review1[i].size == products1[j].size){
+          showrev1.push([review1[i].email, products1[j].imageurl, review1[i].product, review1[i].comment])
+        }
       }
     }
-}
+    return showrev1
+  }},
 
+  methods: {
+     async savereview() {
+      var a = document.getElementById("email").value
+      var b = document.getElementById("product").value
+      var c = document.getElementById("comment").value
+      var d = document.getElementById("size").value
+      const f = ""
+      await addDoc(colRef, {
+        email: a,
+        product: b,
+        comment: c,
+        size: d,
+        field: f
+      })
+      //let z = await getDocs(collection(db, "products"))
+      //z.forEach((docs) => )
+      
+      window.location.reload();
+    }
+
+
+  }
+}
 </script>
 
-<style>
-* {
-  box-sizing: border-box;
-  font-family: "Montserrat";
-}
-section {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-.container {
-  width: 90%;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0px 0px 20px #00000033;
-  border-radius: 8px;
-}
-.form-group {
-  margin-top: 20px;
-  font-size: 20px;
-  color: #9e9e9e;
-}
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 5px;
-  font-size: 18px;
-  border: 1px solid rgba(128, 128, 128, 0.199);
-  margin-top: 5px;
-}
-textarea {
-  resize: vertical;
-}
-button {
-  
-  border: none;
-  padding: 5px;
-  background-color: black;
-  color: aliceblue;
-  
-  cursor: pointer;
-  
-}
-*{
-    margin: 0px;
-    padding: 0px;
-    font-family: poppins;
-    box-sizing: border-box;
-}
-a{
-    text-decoration: none;
-}
-#testimonials{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width:100%;
-}
-.testimonial-heading{
-    letter-spacing: 1px;
-    margin: 30px 0px;
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.testimonial-heading h1{
-    font-size: 2.2rem;
-    font-weight: 500;
-    background-color: #202020;
-    color: #ffffff;
-    padding: 10px 20px;
-}
-.testimonial-heading span{
-    font-size: 1.3rem;
-    color: #252525;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-.testimonial-box-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width:100%;
-    
-}
-.testimonial-box{
-    width:90px;
-    box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 15px;
-    cursor: pointer;
-    justify-content: center;
-    
-}
-.profile-img{
-    width:50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 10px;
-}
-.profile-img img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-.profile{
-    display: flex;
-    align-items: center;
-}
-.name-user{
-    display: flex;
-    flex-direction: column;
-}
-.name-user strong{
-    color: #3d3d3d;
-    font-size: 1.1rem;
-    letter-spacing: 0.5px;
-}
-.name-user span{
-    color: #979797;
-    font-size: 0.8rem;
-}
-.reviews{
-    color: #f9d71c;
-}
-.box-top{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-.client-comment p{
-    font-size: 0.9rem;
-    color: #4b4b4b;
-}
-.testimonial-box:hover{
-    transform: translateY(-10px);
-    transition: all ease 0.3s;
-}
- 
+<style scoped>
 
-::selection{
-    color: #ffffff;
-    background-color: #252525;
-}
- 
 </style>
