@@ -1,5 +1,6 @@
 <template>
 <!-- form -->
+
   <div class="email">
     <label for="exampleInputEmail">Email address</label>
     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required = "">
@@ -19,6 +20,7 @@
     <label for="comment">Write your review! We value your opinions!</label>
     <textarea class="form-control" id="comment" rows="3" required = "" placeholder="Tell us!"></textarea>
     </div><br>
+   
   <button type="submit" class="btn btn-success" @click="savereview()">Publish</button><br><br>
 
   <h2>How your friends feel about our products...</h2>
@@ -83,11 +85,14 @@ export default {
 
   methods: {
      async savereview() {
-    
+      
       var a = document.getElementById("email").value
       var b = document.getElementById("product").value
       var c = document.getElementById("comment").value
       var d = document.getElementById("size").value
+      if(!a || !b || !c || !d) {
+        alert("please fill in ALL the fields")
+      } else {
       const f = new Date().toLocaleString()
       await addDoc(colRef, {
         email: a,
@@ -100,7 +105,7 @@ export default {
       //z.forEach((docs) => )
       
       window.location.reload();
-    }
+    }}
 
 
   }
