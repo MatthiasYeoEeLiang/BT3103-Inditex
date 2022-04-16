@@ -26,6 +26,9 @@ import {
   updateDoc,
   arrayUnion,
   setDoc,
+  increment,
+  query,
+  where
   
 } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
@@ -103,26 +106,72 @@ export default {
     },
 
     async purchaseitems() {
-      for (var ind = 0;  ind < this.items.length; ind++) {
+      var ids = []
+      var outofstock = [];
+      
+      for (var idx = 0;  idx < this.items.length; idx++) {
+        if(this.items[idx].quantity - 1 < 0) {
+        //           alert("SORRY, WE'RE OUT OF STOCK FOR" + " " + this.items[ind].productdisplayname);
+        //           continue;
+          outofstock.push(this.items[idx].productdisplayname);
+        }
+      }
+
+        if (outofstock.length != 0) {
+          var outmess = "SORRY, WE ARE OUT OF STOCK FOR THESE ITEMS, PLEASE REMOVE FROM CART; ";
+          for (var i = 0; i < outofstock.length; i++) {
+            if (i == outofstock.length - 1){
+            outmess += outofstock[i];
+            } else {
+              outmess += outofstock[i] + ", ";
+
+            }
+  }
+          alert(outmess);
+        } else {
+          for (var ind = 0;  ind < this.items.length; ind++) {
             this.fbuser= getAuth().currentUser.email;
             const washingtonRef = doc(db, "users", String(this.fbuser));
             await updateDoc(washingtonRef, {
             purchased: arrayUnion(this.items[ind].id)
             });
-            
+            let z = await getDocs(collection(db, "products"))
+              const citiesref = collection(db, "products");
+              const q = query(citiesref, where("id", "==", this.items[ind].id))
+              console.log(q)
+              const querySnapshot = await getDocs(q);
+              querySnapshot.forEach((doc) => {
+                // setDoc(, { quantity:doc.data().quantity - 1 }, { merge: true });
+                // updateDoc(, {quantity : increment(-1)})
+                // doc.data() is never undefined for query doc snapshots
+                ids.push(doc.id)
+                console.log(doc.id, " => ", doc.data());
+                console.log(doc.id)
+              });
+              console.log(ids)
 
-            //let z = await getDocs(collection(db, "products"))
-            // z.forEach((docs) => {
-            //   let yy = docs.data();
-            //   if (yy.id == this.items[ind].id) {
-                
-            //     let correctquant = yy.quantity - 1;
-                
-            //     setDoc(docs, { quantity : correctquant}, {merge: true})
-            //     console.log(String(docs.data().productdisplayname))
-            //   }
-            // });
-      }
+            z.forEach((docs) => {
+              let yy = docs.data();
+                console.log(String(docs.data().quantity))
+                console.log(String(docs.data().quantity))
+              // console.log(docs.data().id)
+              // console.log(yy)
+              if (yy.id == this.items[ind].id) {
+                // if (yy.quantity - 1 <0) {
+                //   alert("SORRY, WE'RE OUT OF STOCK FOR" + " " + yy.productdisplayname);
+                //   return;
+                  
+                // }
+                // let correctquant = yy.quantity - 1;               
+                // setDoc(docs, { quantity : correctquant}, {merge: true})
+                const quantref = doc(db, "products", ids[ind])
+                console.log(String(docs.data().quantity))
+                updateDoc(quantref , {quantity: increment(-1)});
+                console.log(String(docs.data().quantity))
+              }
+            });
+          }
+      
       //clear this.items array
       this.items.splice(0, this.items.length);
       //clear cart field in user document
@@ -133,7 +182,7 @@ export default {
       //console.log(snap.data().cart);
       //console.log(snap.data().purchased);
       this.$router.push('profile')
-    }
+    }}
   }
 
 
@@ -141,4 +190,5 @@ export default {
 </script>
 
 <style scoped>
-</style>
+</style>              
+            
