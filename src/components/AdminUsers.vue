@@ -1,6 +1,6 @@
 <template>
   <h3>Customers</h3><br><br>
-  <button id = show type="button" :onclick="mounted"> Show </button><br>
+  <button id = "show" type="button" :onclick="mounted"> Show </button><br>
   <table id= "custable">
     <thead>
       <tr>
@@ -19,7 +19,8 @@
 <script>
 import firebaseApp from "../firebase.js";
 import { getFirestore } from "firebase/firestore"
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged} from "firebase/auth";
 
 const db = getFirestore(firebaseApp);
 
@@ -30,7 +31,17 @@ export default {
 
   methods: {
     mounted() {
-      async function display(){
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+          if (user) {
+              this.user = user;
+              display(user);
+          }
+      });
+      async function display(user){
+        let docRef = await doc(db, "admin",String(user.email));
+      let docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
       let z = await getDocs(collection(db, "users"))
       let ind = 1;
       z.forEach((docs) => {
@@ -64,7 +75,10 @@ export default {
         cell7.innerHTML = purchased;
         
         console.log(yy.purchased)
-      })
+      })} else {
+        alert("Sorry you are not an admin!");
+        console.log("No such document !");
+      }
     }
     display()
 
