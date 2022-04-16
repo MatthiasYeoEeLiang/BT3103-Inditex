@@ -18,7 +18,7 @@
                     <div class="profile">
                         <!--img---->
                         <div class="profile-img">
-                            <img src="images/c-1.jpg" />
+                            <img :src="require('@/assets/bershka f casual pants.jpeg')" />
                         </div>
                         <!--name-and-username-->
                         <div class="name-user">
@@ -82,7 +82,7 @@
                     <div class="profile">
                         <!--img---->
                         <div class="profile-img">
-                            <img src="images/c-3.jpg" />
+                            <img :src="require('@/assets/bershka f formal pants.jpeg')" />
                         </div>
                         <!--name-and-username-->
                         <div class="name-user">
@@ -112,7 +112,7 @@
                     <div class="profile">
                         <!--img---->
                         <div class="profile-img">
-                            <img src="images/c-4.jpg" />
+                            <img :src="require('@/assets/pab m casual pants.jpeg')" />
                         </div>
                         <!--name-and-username-->
                         <div class="name-user">
