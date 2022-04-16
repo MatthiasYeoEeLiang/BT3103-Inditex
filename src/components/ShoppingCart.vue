@@ -109,6 +109,8 @@ export default {
             await updateDoc(washingtonRef, {
             purchased: arrayUnion(this.items[ind].id)
             });
+            
+
             //let z = await getDocs(collection(db, "products"))
             // z.forEach((docs) => {
             //   let yy = docs.data();
