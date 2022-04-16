@@ -1,6 +1,8 @@
 <template>
   <NavBar/>
+  <br><br><br>
   <AddReview/>
+  <br><br><br>
   <SeeReview/>
 </template>
 
