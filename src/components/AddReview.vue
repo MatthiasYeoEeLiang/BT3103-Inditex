@@ -3,6 +3,16 @@
       <br><br><br><br><br>
       <div class="container">
           <h2>Upload a review and get 10 coins!</h2>
+          <form> 
+            <div class="pdt-name">
+              <!-- <label for="product-name"> Please enter a valid product name</label>
+              <input type="text" id="product-name" required="">
+              <button @click="handleInput"> Check validity</button> -->
+              <treeselect v-model="value" :multiple="true" :options="options" />
+            </div>
+          </form>
+
+
           
           <form @submit.prevent="handleSubmit">
               
@@ -11,7 +21,7 @@
                   <textarea id="review" rows="5" v-model="review"></textarea>
               </div>
 
-              <button type="submit">Submit</button>
+              <button @click="add10Coins" type="submit">Submit</button>
           </form>
       </div>
       <br><br><br><br><br><br><br><br><br><br><br><br>
@@ -43,7 +53,9 @@
                 </div>
                 <!--Comments---------------------------------------->
                 <div class="client-comment">
-                    <p> Review: {{ review }}
+                    <p> 
+                      Product: {{ value }} <br>
+                      Review: {{ review }}
 
                     </p>
                 </div>
@@ -57,13 +69,146 @@
 double
 <script>
 //import { projectFirestore } from '../firebase/config'
+// import the component
+import Treeselect from 'vue3-treeselect'
+  // import the styles
+import 'vue3-treeselect/dist/vue3-treeselect.css'
+import { getAuth } from "firebase/auth";
+import firebaseApp from "../firebase.js";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc
+  
+} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
 export default {
+  components: { Treeselect },
     data() {
         return {
+          value: null,
+          options: [ {
+            id:'male',
+            label:'male',
+            children: [{
+              id:'casual',
+              label:'casual',
+              children: [{
+                id:'Relaxed-fit trousers',
+                label:'Relaxed-fit trousers'
+              }, {
+                id: 'Cargo-Pants',
+                label: 'Cargo-Pants'
+              },
+              {
+                id: 'Straight-cut Trousers',
+                label: 'Straight-cut Trousers'
+              },{
+                id: 'Striped T-shirt',
+                label: 'Striped T-shirt'
+              },{
+                id: 'Colored T-shirt',
+                label: 'Colored T-shirt'
+              }, {
+                id:'Worded T-shirt',
+                label: 'Worded T-shirt'
+              },{
+                id:'Stretchy Poplin Shirt',
+                label:'Stretchy Poplin Shirt'
+              }
+              ]
+            }, {
+              id:'formal',
+              label:'formal',
+              children: [{
+                id:'Stretched Formal Shirt',
+                label:'Stretched Formal Shirt'
+              }, {
+                id: 'Easy Care Textured Shirt',
+                label: 'Easy Care Textured Shirt'
+              },
+              {
+                id: 'Dark Blue Office Pants',
+                label: 'Dark Blue Office Pants'
+              },{
+                id: 'Beige Office Pants',
+                label: 'Beige Office Pants'
+              },{
+                id: 'Grey Office Pants',
+                label: 'Grey Office Pants'
+              }]
+
+            }]
+          }, {
+            id:'female',
+            label:'female',
+            children: [{
+              id:'casual',
+              label:'casual',
+              children: [{
+                id:'Bell-Bottom Jeans',
+                label:'Bell-Bottom Jeans'
+              }, {
+                id: 'Loose Joggers',
+                label: 'Loose Joggers'
+              },
+              {
+                id: 'Distressed Jeans',
+                label: 'Distressed Jeans'
+              },{
+                id: 'Colored Tank Top',
+                label: 'Colored Tank Top'
+              },{
+                id: 'Oversized T-shirt',
+                label: 'Oversized T-shirt'
+              }, {
+                id:'Striped T-shirt with Cartoon',
+                label: 'Striped T-shirt with Cartoon'
+              }
+              ]
+            }, {
+              id:'formal',
+              label:'formal',
+              children: [{
+                id:'White Linen Shirt',
+                label:'White Linen Shirt'
+              }, {
+                id: 'Satin-Finish Shirt',
+                label: 'Satin-Finish Shirt'
+              },
+              {
+                id: 'Oversized Poplin Shirt',
+                label: 'Oversized Poplin Shirt'
+              },{
+                id: 'Pink Trousers',
+                label: 'Pink Trousers'
+              },{
+                id: 'Green Office Trousers',
+                label: 'Green Office Trousers'
+              },{
+                id: 'Pleated Trousers',
+                label: 'Pleated Trousers'
+              }]
+
+            }]
+
+          }],
             
             
             review: ''
         }
+    },
+
+    methods: { 
+      async add10Coins() {
+        this.fbuser= getAuth().currentUser.email;
+        const washingtonRef = doc(db, "users", String(this.fbuser));
+        var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
+        setDoc(washingtonRef, { coin: snap.data().coin + 10 }, { merge: true });
+        console.log(snap.data().coin);
+
+      }
     }
 }
 
