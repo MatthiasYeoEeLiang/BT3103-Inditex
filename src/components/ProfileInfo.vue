@@ -1,12 +1,12 @@
 <template>
     <!-- <div id = "logged" v-if="user" > -->
     <div id = "container">
-    <form id = "myform" >
+    <form id = "myform">
         <h2>Setup your account to get 50 coins!</h2>
 
         <div class = "formli" >
         <label for="name1"><i> Name: </i></label> <br>
-        <input type="text" id = "name1" required = "" placeholder="Enter your Name"> <br><br>
+        <input type="text" id = "name1" required ="required"> <br><br>
 
         <label for="gender1"><i> Gender: </i></label> <br>
         <select name="gender" id="gender1">
@@ -15,18 +15,19 @@
         </select><br><br>
 
         <label for="num1"><i> Phone Number: </i></label> <br>
-        <input type="number" id = "num1" required = "" placeholder="eg. 91234567"> <br><br>
+        <input type="number" id = "num1" required ="required" placeholder="eg. 91234567"> <br><br>
 
         <label for="date1"><i> Birthday: </i></label> <br>
-        <input type="date" id = "date1" required = "" placeholder=" "> <br><br>
+        <input type="date" id = "date1" required="required" placeholder=" "> <br><br>
 
-
-
-        <div class = "save">
-            <button id = "savebutton" type = "button" @click="savetofs()"> Save Information </button>
-        </div>
         </div>
     </form>
+
+        <div class = "save">
+            <button id = "savebutton" type = "submit" @click="savetofs()"> Save Information </button>
+        </div>
+        <!-- </div>
+    </form> -->
     </div>
 <!-- </div> -->
 </template>
@@ -35,7 +36,7 @@
 import firebaseApp from '../firebase.js';
 import {getAuth} from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 // const auth = getAuth();
 // this.fbuser = auth.currentUser.email;
@@ -52,22 +53,22 @@ export default {
             var c = document.getElementById("gender1").value
             var d = document.getElementById("num1").value
             var e = document.getElementById("date1").value
-            try {
+            if(!a || !d || !e) {
+                alert("Please fill up all the fields. We want to know EVERYTHING about you.")
+            } else {
                 const auth = getAuth();
                 this.fbuser = auth.currentUser.email;
-    
+                let doccRef = await doc(db, "users",String(this.fbuser));
+                let docSnap = await getDoc(doccRef);
+                if (docSnap.exists()) {
+                    setDoc(doccRef, { name: a, gender: c, phonenum: d, birthday: e, email: h }, { merge: true });
+                } else {
                 const docRef = await setDoc(doc(db, "users", String(this.fbuser)), {
-
-
-                    name: a, coin: b, gender: c, phonenum : d, birthday: e, cart: f, purchased : g, email :h
-
+                    name: a, coin: b, gender: c, phonenum : d, birthday: e, cart: f, purchased : g, email : h
                 })
-                console.log(docRef)
+                console.log(docRef)}
                 document.getElementById('myform').reset();
                 this.$emit("added")
-            }
-            catch(error) {
-                console.error("Error adding document: ", error);
             }
         }
     }
