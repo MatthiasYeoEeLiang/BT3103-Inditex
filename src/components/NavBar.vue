@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
   <div class="container-fluid">
     <a class="navbar-brand" href="/">INDITEX</a>
     <button
@@ -16,27 +16,22 @@
     <div class="collapse navbar-collapse justify-content-center " id="navbarNav">
       <ul class="navbar-nav z">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Mix and Match</a>
+          <a class="nav-link active" aria-current="page" href="/ReviewPage">Reviews</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/ReviewPage">Reviews</a>
+          <a class="nav-link active" aria-current="page" href="/FilterPage">Filter</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/FilterPage">Filter</a>
+          <a class="nav-link active" aria-current="page" href="/shoppingcartpage">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/loginPage">Login</a>
+          <a class="nav-link active" aria-current="page" href="/profile">Account</a>
         </li>
         <li class="nav-item">
-
-          <a class="nav-link" href="/shoppingcartpage">Cart</a>
-
+          <a class="nav-link active" aria-current="page" href="/AdminInventoryPage">Admin</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/profile">Account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/AdminInventoryPage">Admin</a>
+          <a class="nav-link active" aria-current="page" href="/loginPage">Login</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link disabled"
