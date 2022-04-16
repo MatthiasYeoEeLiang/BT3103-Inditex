@@ -9,7 +9,9 @@
       <a href="#" class="btn btn-danger" @click="removefromcart(item.id)" >Remove from cart</a>
     </div>
   </div>
-   <a href="#" class="btn btn-success" @click="purchaseitems" >CHECKOUT</a>
+   <a href="#" class="btn btn-success" @click="purchaseitems" >CHECKOUT</a><br><br>
+
+   
 
 </template>
 
