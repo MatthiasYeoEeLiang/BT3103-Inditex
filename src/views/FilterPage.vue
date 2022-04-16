@@ -1,5 +1,6 @@
 <template>
 <NavBar/>
+<br>
 <FilterPage/>
 
 <!-- <img id = "bg" src="@/assets/Coins2.png" alt = ""> -->
