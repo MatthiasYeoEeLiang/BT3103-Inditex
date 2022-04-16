@@ -19,15 +19,18 @@
     <label for="comment">Write your review! We value your opinions!</label>
     <textarea class="form-control" id="comment" rows="3" required = "" placeholder="Tell us!"></textarea>
     </div><br>
-  <button type="submit" class="btn btn-success" @click="savereview()">Publish</button>
+  <button type="submit" class="btn btn-success" @click="savereview()">Publish</button><br><br>
+
+  <h2>How your friends feel about our products...</h2>
 
   <!-- cards -->
   <div class="card"  v-for="item in showrev" :key="item" style="width: 18rem">
+    <br><br><br>
     <img class="card-img-top" :src="item[1]" alt="Card image cap" />
     <div class="card-body">
       <p class="card-text" >{{ "Customer: " + item[0] }}</p>
       <p class="card-text">{{ "Product: " + item[2] }}</p>
-      <p class="card-text">{{ "Satisfied review made on " + item[4] + ": " + item[3] }}</p>
+      <p class="card-text">{{ "Satisfied customer commented " + item[4] + ": " + item[3] }}</p>
     </div>
   </div>
 
@@ -80,6 +83,7 @@ export default {
 
   methods: {
      async savereview() {
+    
       var a = document.getElementById("email").value
       var b = document.getElementById("product").value
       var c = document.getElementById("comment").value
@@ -103,6 +107,11 @@ export default {
 }
 </script>
 
+
 <style scoped>
+.card{
+  left: 39.3%;
+
+}
 
 </style>
