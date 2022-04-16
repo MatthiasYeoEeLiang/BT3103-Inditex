@@ -3,10 +3,10 @@
         <h1 id = "mainHead">INDITEX</h1>
         <div id= "firebaseui-auth-container"></div>
         <div id="pagecontent">
-            Crypto Paper Portfolio (CPP) is an app to track your crypto portfolio. <br>
-            Enter coin details and get real time Profit and Loss update of your Portfolio.
+            <h1> Welcome! </h1><br>
+           
         </div>
-        <h5>copyright@cpp-2021</h5>
+        <h5>copyright@Inditex-2022</h5>
     </div>
 </template>
 
