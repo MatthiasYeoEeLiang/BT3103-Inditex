@@ -1,16 +1,16 @@
 <template>
-  <h3>Products</h3><br><br>
+  <h3>Customers</h3><br><br>
   <button id = show type="button" :onclick="mounted"> Show </button><br>
-  <table id= "table">
+  <table id= "custable">
     <thead>
       <tr>
-        <th>id</th>
-        <th>PDN</th>
-        <th>price</th>
-        <th>size</th>
-        <th>category</th>
-        <th>gender</th>
-        <th>quantity</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Phone no.</th>
+        <th>Coins</th>
+        <th>Birthday</th>
+        <th>Cart</th>
+        <th>Purchased</th>
       </tr>
     </thead>
   </table>
@@ -25,26 +25,26 @@ const db = getFirestore(firebaseApp);
 
 
 export default {
-  name: 'AdminInventory',
+  name: 'AdminUsers',
 
 
   methods: {
     mounted() {
       async function display(){
-      let z = await getDocs(collection(db, "products"))
+      let z = await getDocs(collection(db, "users"))
       let ind = 1;
       z.forEach((docs) => {
         let yy = docs.data()
-        var table = document.getElementById("table")
+        var table = document.getElementById("custable")
         var row = table.insertRow(ind);
 
-        var id = yy.id;
-        var productdisplayname = yy.productdisplayname;
-        var price = yy.price;
-        var category = yy.category;
-        var size = yy.size;
+        var name = yy.email;
         var gender = yy.gender;
-        var quantity = yy.quantity;
+        var phone = yy.phonenum;
+        var birthday = yy.birthday;
+        var coins = yy.coin;
+        var cart = yy.cart;
+        var purchased = yy.purchased;
 
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -54,16 +54,16 @@ export default {
         var cell6 = row.insertCell(5);
         var cell7 = row.insertCell(6);
 
-        cell1.innerHTML = id;
-        cell2.innerHTML = productdisplayname;
-        cell3.innerHTML = price;
-        cell4.innerHTML = size;
-        cell5.innerHTML = category;
-        cell6.innerHTML = gender;
+        cell1.innerHTML = name;
+        cell2.innerHTML = gender;
+        cell3.innerHTML = phone;
+        cell4.innerHTML = coins;
+        cell5.innerHTML = birthday;
+        cell6.innerHTML = cart;
         
-        cell7.innerHTML = quantity;
+        cell7.innerHTML = purchased;
         
-        console.log(yy.quantity)
+        console.log(yy.purchased)
       })
     }
     display()

@@ -48,7 +48,7 @@ export default {
 
             const f = []
             const g = []
-            
+            const h = String(getAuth().currentUser.email);
             var c = document.getElementById("gender1").value
             var d = document.getElementById("num1").value
             var e = document.getElementById("date1").value
@@ -59,7 +59,7 @@ export default {
                 const docRef = await setDoc(doc(db, "users", String(this.fbuser)), {
 
 
-                    name: a, coin: b, gender: c, phonenum : d, birthday: e, cart: f, purchased : g
+                    name: a, coin: b, gender: c, phonenum : d, birthday: e, cart: f, purchased : g, email :h
 
                 })
                 console.log(docRef)

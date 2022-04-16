@@ -1,11 +1,13 @@
 <template>
     <NavBar/>
     <AdminInventory/>
+    <AdminUsers/>
 </template>
 
 <script>
 import NavBar from '../components/NavBar.vue'
 import AdminInventory from '../components/AdminInventory.vue'
+import AdminUsers from '../components/AdminUsers.vue'
 
 
 export default {
@@ -14,6 +16,7 @@ export default {
     components:{
         NavBar,
         AdminInventory,
+        AdminUsers,
 
     }
 }
