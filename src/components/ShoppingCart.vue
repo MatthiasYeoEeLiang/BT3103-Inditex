@@ -109,11 +109,11 @@ export default {
       var ids = []
       var outofstock = [];
       
-      for (var ind = 0;  ind < this.items.length; ind++) {
-        if(this.items[ind].quantity - 1 < 0) {
+      for (var idx = 0;  idx < this.items.length; idx++) {
+        if(this.items[idx].quantity - 1 < 0) {
         //           alert("SORRY, WE'RE OUT OF STOCK FOR" + " " + this.items[ind].productdisplayname);
         //           continue;
-          outofstock.push(this.items[ind].productdisplayname);
+          outofstock.push(this.items[idx].productdisplayname);
         }
       }
 
@@ -131,6 +131,7 @@ export default {
           }
           alert(outmess);
         } else {
+          for (var ind = 0;  ind < this.items.length; ind++) {
             this.fbuser= getAuth().currentUser.email;
             const washingtonRef = doc(db, "users", String(this.fbuser));
             await updateDoc(washingtonRef, {
@@ -139,6 +140,7 @@ export default {
             let z = await getDocs(collection(db, "products"))
               const citiesref = collection(db, "products");
               const q = query(citiesref, where("id", "==", this.items[ind].id))
+              console.log(q)
               const querySnapshot = await getDocs(q);
               querySnapshot.forEach((doc) => {
                 // setDoc(, { quantity:doc.data().quantity - 1 }, { merge: true });
@@ -170,13 +172,13 @@ export default {
                 console.log(String(docs.data().quantity))
               }
             });
-        
+          }
       
       //clear this.items array
       this.items.splice(0, this.items.length);
       //clear cart field in user document
       this.fbuser= getAuth().currentUser.email;
-      // const washingtonRef = doc(db, "users", String(this.fbuser));
+      const washingtonRef = doc(db, "users", String(this.fbuser));
       setDoc(washingtonRef, { cart: [] }, { merge: true });
       //var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
       //console.log(snap.data().cart);
