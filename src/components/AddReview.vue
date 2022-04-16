@@ -27,7 +27,7 @@
     <div class="card-body">
       <p class="card-text" >{{ "Customer: " + item[0] }}</p>
       <p class="card-text">{{ "Product: " + item[2] }}</p>
-      <p class="card-text">{{ "Satisfied review made on " +new Date().toLocaleString()+": " + item[3] }}</p>
+      <p class="card-text">{{ "Satisfied review made on " + item[4] + ": " + item[3] }}</p>
     </div>
   </div>
 
@@ -71,7 +71,7 @@ export default {
     for (var i = 0; i < review1.length; i++) {
       for (var j = 0; j < products1.length; j++){
         if (review1[i].product == products1[j].productdisplayname && review1[i].size == products1[j].size){
-          showrev1.push([review1[i].email, products1[j].imageurl, review1[i].product, review1[i].comment])
+          showrev1.push([review1[i].email, products1[j].imageurl, review1[i].product, review1[i].comment, review1[i].field])
         }
       }
     }
@@ -84,7 +84,7 @@ export default {
       var b = document.getElementById("product").value
       var c = document.getElementById("comment").value
       var d = document.getElementById("size").value
-      const f = ""
+      const f = new Date().toLocaleString()
       await addDoc(colRef, {
         email: a,
         product: b,
