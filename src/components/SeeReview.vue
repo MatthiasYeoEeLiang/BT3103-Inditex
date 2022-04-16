@@ -51,7 +51,7 @@
                     <div class="profile">
                         <!--img---->
                         <div class="profile-img">
-                            <img src="images/c-2.jpg" />
+                            <img :src="require('@/assets/Bershka Casual shirt male.png')" />
                         </div>
                         <!--name-and-username-->
                         <div class="name-user">

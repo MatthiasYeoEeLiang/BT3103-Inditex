@@ -6,8 +6,10 @@
       <p class="card-text">{{ item.price }}</p>
       <p class="card-text">{{ item.size }}</p>
       <p class="card-text">{{ item.gender }}</p>
+      <a href="#" class="btn btn-danger" @click="removefromcart(item.id)" >Remove from cart</a>
     </div>
   </div>
+   <a href="#" class="btn btn-success" @click="purchaseitems" >CHECKOUT</a>
 
 </template>
 
@@ -20,6 +22,11 @@ import {
   getDoc,
   getDocs,
   collection,
+  arrayRemove,
+  updateDoc,
+  arrayUnion,
+  setDoc,
+  
 } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
@@ -75,6 +82,59 @@ export default {
     }
     console.log("here3");
   },
+
+  methods: {
+    async removefromcart(itemid) {
+      this.fbuser= getAuth().currentUser.email;
+      const washingtonRef = doc(db, "users", String(this.fbuser));
+      await updateDoc(washingtonRef, {
+            cart: arrayRemove(itemid)
+      });
+      var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
+            console.log(snap.data().cart);
+       for (var index = 0; index < this.items.length; index++){
+         if (this.items[index] == itemid) {
+           if (index != -1) {
+             this.items.splice(index, 1)
+           }
+         }
+       }
+       window.location.reload();
+    },
+
+    async purchaseitems() {
+      for (var ind = 0;  ind < this.items.length; ind++) {
+            this.fbuser= getAuth().currentUser.email;
+            const washingtonRef = doc(db, "users", String(this.fbuser));
+            await updateDoc(washingtonRef, {
+            purchased: arrayUnion(this.items[ind].id)
+            });
+            //let z = await getDocs(collection(db, "products"))
+            // z.forEach((docs) => {
+            //   let yy = docs.data();
+            //   if (yy.id == this.items[ind].id) {
+                
+            //     let correctquant = yy.quantity - 1;
+                
+            //     setDoc(docs, { quantity : correctquant}, {merge: true})
+            //     console.log(String(docs.data().productdisplayname))
+            //   }
+            // });
+      }
+      //clear this.items array
+      this.items.splice(0, this.items.length);
+      //clear cart field in user document
+      this.fbuser= getAuth().currentUser.email;
+      const washingtonRef = doc(db, "users", String(this.fbuser));
+      setDoc(washingtonRef, { cart: [] }, { merge: true });
+      //var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
+      //console.log(snap.data().cart);
+      //console.log(snap.data().purchased);
+      this.$router.push('profile')
+    }
+  }
+
+
 };
 </script>
 
