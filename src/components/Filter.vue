@@ -4,7 +4,7 @@
     <div class="card-body">
         
         <p class="card-text">{{item.productdisplayname}}</p>
-        <p class="card-text">{{item.price}}</p>
+        <p class="card-text">S${{item.price}}</p>
         <p class="card-text">{{item.size}}</p>
         <p class="card-text">{{item.gender}}</p>
         <a href="#" class="btn btn-success" @click="addtocart(item.id)">Add to cart</a>

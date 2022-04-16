@@ -3,7 +3,7 @@
     <img class="card-img-top" :src="item.imageurl" alt="Card image cap" />
     <div class="card-body">
       <p class="card-text" >{{ item.productdisplayname }}</p>
-      <p class="card-text">{{ item.price }}</p>
+      <p class="card-text">S${{ item.price }}</p>
       <p class="card-text">{{ item.size }}</p>
       <p class="card-text">{{ item.gender }}</p>
     </div>

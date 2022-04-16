@@ -19,7 +19,8 @@
 <script>
 import firebaseApp from "../firebase.js";
 import { getFirestore } from "firebase/firestore"
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged} from "firebase/auth";
 
 const db = getFirestore(firebaseApp);
 
@@ -30,7 +31,18 @@ export default {
 
   methods: {
     mounted() {
-      async function display(){
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+          if (user) {
+              this.user = user;
+              display(user);
+          }
+      });
+      async function display(user){
+      let docRef = await doc(db, "admin",String(user.email));
+      let docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
       let z = await getDocs(collection(db, "products"))
       let ind = 1;
       z.forEach((docs) => {
@@ -65,6 +77,11 @@ export default {
         
         console.log(yy.quantity)
       })
+
+      } else {
+        alert("Sorry you are not an admin!");
+        console.log("No such document !");
+      }
     }
     display()
 
