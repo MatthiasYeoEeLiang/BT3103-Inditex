@@ -2,21 +2,19 @@
   <NavBar/>
   <br><br><br>
   <AddReview/>
-  <br><br><br>
-  <SeeReview/>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
 import AddReview from '@/components/AddReview.vue'
-import SeeReview from '@/components/SeeReview.vue'
+//import SeeReview from '@/components/SeeReview.vue'
 
 export default {
   name: 'App',
   components:{
     AddReview,
     NavBar,
-    SeeReview
+
   },
   data(){
     return{
