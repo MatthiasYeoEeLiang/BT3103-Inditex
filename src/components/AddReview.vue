@@ -1,9 +1,9 @@
 <template>
 <!-- form -->
 
-  <div class="email">
-    <label for="exampleInputEmail">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required = "">
+ <div class="name">
+    <label for="name">Name</label>
+    <textarea class="form-control" id="name" rows="1" required = "" placeholder="How do we adress you?"></textarea>
   </div><br>
 
    <div class="product">
@@ -76,7 +76,7 @@ export default {
     for (var i = 0; i < review1.length; i++) {
       for (var j = 0; j < products1.length; j++){
         if (review1[i].product == products1[j].productdisplayname && review1[i].size == products1[j].size){
-          showrev1.push([review1[i].email, products1[j].imageurl, review1[i].product, review1[i].comment, review1[i].field])
+          showrev1.push([review1[i].name, products1[j].imageurl, review1[i].product, review1[i].comment, review1[i].datetimeofrev])
         }
       }
     }
@@ -86,7 +86,7 @@ export default {
   methods: {
      async savereview() {
       
-      var a = document.getElementById("email").value
+      var a = document.getElementById("name").value
       var b = document.getElementById("product").value
       var c = document.getElementById("comment").value
       var d = document.getElementById("size").value
@@ -95,11 +95,11 @@ export default {
       } else {
       const f = new Date().toLocaleString()
       await addDoc(colRef, {
-        email: a,
+        name: a,
         product: b,
         comment: c,
         size: d,
-        field: f
+        datetimeofrev: f
       })
       //let z = await getDocs(collection(db, "products"))
       //z.forEach((docs) => )
