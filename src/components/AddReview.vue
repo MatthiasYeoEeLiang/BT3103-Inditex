@@ -26,7 +26,8 @@
   <h2>How your friends feel about our products...</h2>
 
   <!-- cards -->
-  <div class="card"  v-for="item in showrev" :key="item" style="width: 18rem">
+  <div class="row justify-content-center">
+    <div class="card"  v-for="item in showrev" :key="item" style="width: 40rem">
     <br><br><br>
     <img class="card-img-top" :src="item[1]" alt="Card image cap" />
     <div class="card-body">
@@ -35,6 +36,8 @@
       <p class="card-text">{{ "Satisfied customer commented " + item[4] + ": " + item[3] }}</p>
     </div>
   </div>
+  </div>
+  
 
 </template>
 
@@ -115,8 +118,13 @@ export default {
 
 <style scoped>
 .card{
-  left: 39.3%;
+  /* left: 39.3%; */
+  width: 800px;
 
 }
-
+.card-img-top {
+    width: 100%;
+    height: 45vw;
+    object-fit: cover;
+}
 </style>

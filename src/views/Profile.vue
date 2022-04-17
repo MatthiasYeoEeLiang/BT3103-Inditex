@@ -9,7 +9,7 @@
             <div v-if="user">
             <form class="information">
             <div>
-                <img src="@/assets/profilepic.png" style="width:75px; height:75px; border-radius:8px; border:4px" />
+                <img src="@/assets/pfp.png" style="width:100px; height:100px; border-radius:8px; border:4px" />
             </div><br><br>
             <div>
                 <p> Name: <strong>{{user.displayName}}</strong><br>
