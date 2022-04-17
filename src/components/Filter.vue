@@ -237,7 +237,7 @@ select{
 
 .card-img-top {
     width: 100%;
-    height: 15vw;
+    height: 19vw;
     object-fit: cover;
 }
 
