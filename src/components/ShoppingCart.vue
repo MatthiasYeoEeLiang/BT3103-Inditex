@@ -11,8 +11,10 @@
         <a href="#" class="btn btn-danger" @click="removefromcart(item.id)" >Remove from cart</a>
       </div>
     </div>
-  </div><br><br><br>
-
+  </div><br>
+  <h2 id="totalPrice">  </h2>
+  <br>
+  
    <a href="#" class="btn btn-success" @click="purchaseitems" >CHECKOUT</a><br><br>
 
    
@@ -73,6 +75,7 @@ export default {
     //   const fbuser =  await auth.currentUser.email;
       var snap = await getDoc(doc(db, "users", String(user.email)));
       var cartarr = snap.data().cart;
+      var tp = 0;
       for (var index = 0; index < cartarr.length; index++) {
         let z = await getDocs(collection(db, "products"));
         z.forEach((docs) => {
@@ -83,6 +86,9 @@ export default {
           if (yy.id == cartarr[index]) {
             product.push(yy);
             console.log("here1");
+            tp = tp+parseFloat(yy.price);
+            document.getElementById("totalPrice").innerHTML =
+            " Total Price is : S$" + String(tp);
           }
 
         });
@@ -220,7 +226,7 @@ export default {
 
 .card-img-top {
     width: 100%;
-    height: 15vw;
+    height: 25vw;
     object-fit: cover;
 }
 </style>
