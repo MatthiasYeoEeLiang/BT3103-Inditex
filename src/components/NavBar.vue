@@ -14,7 +14,7 @@
       <i class="fas fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse justify-content-center " id="navbarNav">
-      <ul class="navbar-nav z">
+      <ul class="navbar-nav z mx-auto ">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/ReviewPage">Reviews</a>
         </li>
@@ -27,17 +27,15 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/profile">Account</a>
         </li>
-        <li class="nav-item">
+
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
           <a class="nav-link active" aria-current="page" href="/AdminInventoryPage">Admin</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/loginPage">Login</a>
+          <a class="nav-link active " aria-current="page" href="/loginPage" >Login</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled"
-            >Disabled</a
-          >
-        </li> -->
       </ul>
     </div>
   </div>
