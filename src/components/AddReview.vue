@@ -1,7 +1,7 @@
 <template>
 <!-- form -->
-
- <div class="name">
+<div class="reviewbox">
+   <div class="name">
     <label for="name">Name</label>
     <textarea class="form-control" id="name" rows="1" required = "" placeholder="How do we adress you?"></textarea>
   </div><br>
@@ -22,6 +22,8 @@
     </div><br>
    
   <button type="submit" class="btn btn-success" @click="savereview()">Publish</button><br><br>
+</div><br><br>
+
 
   <h2>How your friends feel about our products...</h2>
 
@@ -117,6 +119,29 @@ export default {
 
 
 <style scoped>
+.reviewbox{
+border:4px solid black;
+width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+
+}
+.name{
+  margin-top: 10px;
+}
+
+.form-control{
+  text-align: center;
+  width:70%;
+
+}
+textarea {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .card{
   /* left: 39.3%; */
   width: 800px;
