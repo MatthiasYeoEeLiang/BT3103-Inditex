@@ -63,7 +63,7 @@ export default {
             }
 )
         console.log(this.items)
-      }
+      } 
     });
 
     async function display(user) {

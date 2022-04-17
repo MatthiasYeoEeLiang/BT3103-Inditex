@@ -164,6 +164,7 @@ export default {
         });
         var snap = await getDoc(doc(db, "users", String(this.fbuser)));
         console.log(snap.data().cart);
+        alert("added, proceed to cart to checkout!")
         //var snap = await getDoc(doc(db, 'users', String(this.fbuser)));
         //snap.update({cart : db.firestore.cart.arrayUnion(itemid)})
         //console.log(snap.data().cart)
