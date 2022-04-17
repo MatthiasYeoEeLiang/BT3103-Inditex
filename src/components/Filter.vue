@@ -204,7 +204,9 @@ export default {
   
 }
 
-
+label{
+  margin-right: 5px;
+}
 
 .filtergrid{
     justify-self: center;
