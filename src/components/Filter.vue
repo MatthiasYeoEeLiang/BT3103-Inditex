@@ -5,23 +5,23 @@
             <label for="id_select"> Ocassion : </label>
         <select @change="handleChange" name="Category" id="Category" class="select-dropdown">
             
-            <option value="1">formal</option>
-            <option value="2">casual</option>
+            <option value="1">Formal</option>
+            <option value="2">Casual</option>
         
         </select>
                 <label for="id_select"> Gender : </label>
             <select @change="handleChange1" name="Gender" id="Gender" class="select-dropdown">
                 
-                <option value="1">male</option>
-                <option value="2">female</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
             
         </select>
 
                 <label for="id_select"> Price Range : </label>
             <select @change="handleChange2" name="PriceRange" id="PriceRange" class="select-dropdown">
                 
-                <option value="1">less than 50</option>
-                <option value="2">more than 50</option>
+                <option value="1">Less than 50</option>
+                <option value="2">More than 50</option>
             
         </select>
                 <label for="id_select"> Size : </label>
